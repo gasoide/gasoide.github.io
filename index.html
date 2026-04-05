@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>TEST MEDIA</title>
+  <title>VJ ENGINE</title>
   <style>
     html, body {
       margin: 0;
@@ -35,22 +35,43 @@
       flex-direction: column;
       gap: 10px;
     }
+
+    #media-loaders label {
+      color: #fff;
+      font-size: 12px;
+      margin-bottom: 2px;
+      display: block;
+    }
+
+    #media-loaders input[type="file"] {
+      color: #fff;
+      font-size: 11px;
+    }
   </style>
 </head>
 <body>
 
   <div id="pane-container"></div>
 
-  <!-- 🔥 INPUT MEDIA CORRETTI -->
   <div id="media-loaders">
-    <input type="file" id="media1" accept="image/*,video/*">
-    <input type="file" id="media2" accept="image/*,video/*">
-    <input type="file" id="media3" accept="image/*,video/*">
+    <div>
+      <label for="media1">Layer 1</label>
+      <input type="file" id="media1" accept="image/*,video/*">
+    </div>
+    <div>
+      <label for="media2">Layer 2</label>
+      <input type="file" id="media2" accept="image/*,video/*">
+    </div>
+    <div>
+      <label for="media3">Layer 3</label>
+      <input type="file" id="media3" accept="image/*,video/*">
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tweakpane@3.1.0/dist/tweakpane.min.js"></script>
-  <script src="sketch.js?v=5000"></script>
+  <script src="sketch.js?v=6000"></script>
 
 </body>
 </html>
