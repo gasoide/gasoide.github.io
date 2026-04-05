@@ -1,18 +1,20 @@
-// PARAMETRI CONTROLLABILI DA GUI
-const params = {
-  numBlobs: 150,
-  speed: 0.8,
+let params = {
+  numBlobs: 200,
+  speed: 1.0,
+  noiseScale: 0.002,
   sizeMin: 10,
   sizeMax: 40,
   hueSpeed: 0.4,
   trail: 12,
+  saturation: 80,
+  brightness: 100,
 };
 
 let blobs = [];
 let t = 0;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth - 260, windowHeight);
   colorMode(HSB, 360, 100, 100, 100);
   noStroke();
 
@@ -38,25 +40,29 @@ function initGUI() {
     container: document.getElementById('pane-container')
   });
 
-  pane.addInput(params, 'numBlobs', { min: 10, max: 500, step: 1 })
-      .on('change', initBlobs);
+  const f1 = pane.addFolder({ title: 'Forme' });
+  f1.addInput(params, 'numBlobs', { min: 10, max: 500, step: 1 }).on('change', initBlobs);
+  f1.addInput(params, 'sizeMin', { min: 1, max: 50, step: 1 }).on('change', initBlobs);
+  f1.addInput(params, 'sizeMax', { min: 5, max: 100, step: 1 }).on('change', initBlobs);
 
-  pane.addInput(params, 'speed', { min: 0.1, max: 3, step: 0.1 });
-  pane.addInput(params, 'sizeMin', { min: 1, max: 50, step: 1 })
-      .on('change', initBlobs);
-  pane.addInput(params, 'sizeMax', { min: 5, max: 100, step: 1 })
-      .on('change', initBlobs);
+  const f2 = pane.addFolder({ title: 'Movimento' });
+  f2.addInput(params, 'speed', { min: 0.1, max: 3, step: 0.1 });
+  f2.addInput(params, 'noiseScale', { min: 0.0005, max: 0.01, step: 0.0001 });
 
-  pane.addInput(params, 'hueSpeed', { min: 0, max: 2, step: 0.01 });
-  pane.addInput(params, 'trail', { min: 1, max: 50, step: 1 });
+  const f3 = pane.addFolder({ title: 'Colore' });
+  f3.addInput(params, 'hueSpeed', { min: 0, max: 2, step: 0.01 });
+  f3.addInput(params, 'saturation', { min: 0, max: 100, step: 1 });
+  f3.addInput(params, 'brightness', { min: 0, max: 100, step: 1 });
+
+  const f4 = pane.addFolder({ title: 'FX' });
+  f4.addInput(params, 'trail', { min: 1, max: 50, step: 1 });
 }
-
 
 function draw() {
   background(0, 0, 0, params.trail);
 
   for (let b of blobs) {
-    let n = noise(b.x * 0.002, b.y * 0.002, t);
+    let n = noise(b.x * params.noiseScale, b.y * params.noiseScale, t);
     let angle = n * TWO_PI * 4;
 
     b.x += cos(angle) * params.speed;
@@ -69,7 +75,7 @@ function draw() {
 
     b.h = (b.h + params.hueSpeed) % 360;
 
-    fill(b.h, 80, 100, 40);
+    fill(b.h, params.saturation, params.brightness, 40);
     ellipse(b.x, b.y, b.s, b.s);
   }
 
@@ -77,5 +83,5 @@ function draw() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth - 260, windowHeight);
 }
