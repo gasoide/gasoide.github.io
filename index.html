@@ -1,77 +1,30 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <title>VJ ENGINE</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: #000;
-      font-family: sans-serif;
-    }
-
-    #pane-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 260px;
-      height: 100vh;
-      background: rgba(20, 20, 20, 0.85);
-      backdrop-filter: blur(10px);
-      padding: 15px;
-      z-index: 9999;
-      overflow-y: auto;
-      border-right: 1px solid rgba(255,255,255,0.1);
-    }
-
-    #media-loaders {
-      position: fixed;
-      top: 10px;
-      left: 270px;
-      z-index: 99999;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    #media-loaders label {
-      color: #fff;
-      font-size: 12px;
-      margin-bottom: 2px;
-      display: block;
-    }
-
-    #media-loaders input[type="file"] {
-      color: #fff;
-      font-size: 11px;
-    }
-  </style>
-</head>
-<body>
-
-  <div id="pane-container"></div>
-
-  <div id="media-loaders">
-    <div>
-      <label for="media1">Layer 1</label>
-      <input type="file" id="media1" accept="image/*,video/*">
-    </div>
-    <div>
-      <label for="media2">Layer 2</label>
-      <input type="file" id="media2" accept="image/*,video/*">
-    </div>
-    <div>
-      <label for="media3">Layer 3</label>
-      <input type="file" id="media3" accept="image/*,video/*">
-    </div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tweakpane@3.1.0/dist/tweakpane.min.js"></script>
-  <script src="sketch.js?v=6000"></script>
-
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#09090b" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Gasoide" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="./assets/icons/mushroom-favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/icons/mushroom-favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Mapshroom V3</title>
+    <script type="module" crossorigin src="/gasoide/main/sketch.js"></script>
+    <link rel="stylesheet" crossorigin href="/gasoide/main/style.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
