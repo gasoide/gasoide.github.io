@@ -25,21 +25,21 @@ let blobs = [];
 let t = 0;
 
 function setup() {
-  document.getElementById("media1").addEventListener("change", e => loadLayerMedia(e, 0));
-document.getElementById("media2").addEventListener("change", e => loadLayerMedia(e, 1));
-document.getElementById("media3").addEventListener("change", e => loadLayerMedia(e, 2));
-
-  document.getElementById("mediaLoader").addEventListener("change", handleMedia);
+  function setup() {
   canvas = createCanvas(windowWidth - 260, windowHeight);
-
   canvas.position(260, 0);
   canvas.elt.style.zIndex = -1;
 
-  colorMode(HSB, 360, 100, 100, 100);
-  noStroke();
-
-  initBlobs();
   initGUI();
+
+  // AGGANCIO EVENTI DOPO CHE IL DOM È PRONTO
+  setTimeout(() => {
+    document.getElementById("media1").addEventListener("change", e => loadLayerMedia(e, 0));
+    document.getElementById("media2").addEventListener("change", e => loadLayerMedia(e, 1));
+    document.getElementById("media3").addEventListener("change", e => loadLayerMedia(e, 2));
+  }, 100);
+}
+
 }
 
 function initBlobs() {
