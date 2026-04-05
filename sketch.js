@@ -17,10 +17,19 @@ let canvas; // <-- AGGIUNTO
 let canvas;
 
 function setup() {
+let canvas;
+
+function setup() {
   canvas = createCanvas(windowWidth - 260, windowHeight);
 
-  // PROVA: niente posizione, niente stile
-  // Se il canvas appare, sappiamo dov’è il problema
+  // PROTEZIONE: controlla che canvas esista
+  if (canvas && canvas.position) {
+    canvas.position(260, 0);
+  }
+
+  if (canvas && canvas.elt && canvas.elt.style) {
+    canvas.elt.style.zIndex = -1;
+  }
 
   colorMode(HSB, 360, 100, 100, 100);
   noStroke();
@@ -28,6 +37,7 @@ function setup() {
   initBlobs();
   initGUI();
 }
+
 
 
 function initBlobs() {
