@@ -1,3 +1,6 @@
+let media = null;
+let mediaType = null;
+
 let canvas;
 
 let params = {
@@ -16,6 +19,7 @@ let blobs = [];
 let t = 0;
 
 function setup() {
+  document.getElementById("mediaLoader").addEventListener("change", handleMedia);
   canvas = createCanvas(windowWidth - 260, windowHeight);
 
   canvas.position(260, 0);
@@ -64,6 +68,14 @@ function initGUI() {
 }
 
 function draw() {
+  if (media) {
+  if (mediaType === "image") {
+    image(media, 0, 0, width, height);
+  } else if (mediaType === "video") {
+    image(media, 0, 0, width, height);
+  }
+}
+
   background(0, 0, 0, params.trail);
 
   for (let b of blobs) {
@@ -91,3 +103,20 @@ function windowResized() {
   resizeCanvas(windowWidth - 260, windowHeight);
   canvas.position(260, 0);
 }
+function handleMedia(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const url = URL.createObjectURL(file);
+
+  if (file.type.startsWith("image")) {
+    media = loadImage(url);
+    mediaType = "image";
+  } else if (file.type.startsWith("video")) {
+    media = createVideo(url);
+    media.hide(); // non mostra il player HTML
+    media.loop();
+    mediaType = "video";
+  }
+}
+
