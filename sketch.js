@@ -14,11 +14,13 @@ let blobs = [];
 let t = 0;
 let canvas; // <-- AGGIUNTO
 
+let canvas;
+
 function setup() {
-  // CREA IL CANVAS A DESTRA DEL PANNELLO
-  canvas = createCanvas(windowWidth - 260, windowHeight); // <-- FIX
-  canvas.position(260, 0); 
-  canvas.style('z-index', '-1');
+  canvas = createCanvas(windowWidth - 260, windowHeight);
+
+  // PROVA: niente posizione, niente stile
+  // Se il canvas appare, sappiamo dov’è il problema
 
   colorMode(HSB, 360, 100, 100, 100);
   noStroke();
@@ -26,6 +28,7 @@ function setup() {
   initBlobs();
   initGUI();
 }
+
 
 function initBlobs() {
   blobs = [];
