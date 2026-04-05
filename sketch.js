@@ -17,25 +17,31 @@ let canvas; // <-- AGGIUNTO
 let canvas;
 
 function setup() {
-let canvas;
+  try {
+    canvas = createCanvas(windowWidth - 260, windowHeight);
+    console.log("Canvas creato:", canvas);
 
-function setup() {
-  canvas = createCanvas(windowWidth - 260, windowHeight);
+    // PROTEZIONE TOTALE
+    if (canvas && canvas.position) {
+      canvas.position(260, 0);
+    }
 
-  // PROTEZIONE: controlla che canvas esista
-  if (canvas && canvas.position) {
-    canvas.position(260, 0);
+    if (canvas && canvas.elt && canvas.elt.style) {
+      canvas.elt.style.zIndex = -1;
+    }
+
+    colorMode(HSB, 360, 100, 100, 100);
+    noStroke();
+
+    console.log("Inizializzo blobs");
+    initBlobs();
+
+    console.log("Inizializzo GUI");
+    initGUI();
+
+  } catch (err) {
+    console.error("ERRORE IN SETUP:", err);
   }
-
-  if (canvas && canvas.elt && canvas.elt.style) {
-    canvas.elt.style.zIndex = -1;
-  }
-
-  colorMode(HSB, 360, 100, 100, 100);
-  noStroke();
-
-  initBlobs();
-  initGUI();
 }
 
 
