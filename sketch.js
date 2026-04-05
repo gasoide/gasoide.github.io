@@ -12,11 +12,12 @@ let params = {
 
 let blobs = [];
 let t = 0;
+let canvas; // <-- AGGIUNTO
 
 function setup() {
   // CREA IL CANVAS A DESTRA DEL PANNELLO
-  createCanvas(windowWidth - 260, windowHeight);
-  canvas.position(260, 0); // <-- QUESTO È IL FIX
+  canvas = createCanvas(windowWidth - 260, windowHeight); // <-- FIX
+  canvas.position(260, 0); 
   canvas.style('z-index', '-1');
 
   colorMode(HSB, 360, 100, 100, 100);
