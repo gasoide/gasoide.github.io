@@ -1,43 +1,50 @@
 let t = 0;
-let intensity = 1;
+let blobs = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   colorMode(HSB, 360, 100, 100, 100);
   noStroke();
+
+  for (let i = 0; i < 200; i++) {
+    blobs.push({
+      x: random(width),
+      y: random(height),
+      s: random(10, 40),
+      o: random(0.5, 1.5),
+      h: random(360)
+    });
+  }
 }
 
 function draw() {
   background(0, 0, 0, 10);
 
-  translate(width / 2, height / 2);
+  for (let b of blobs) {
+    let n = noise(b.x * 0.002, b.y * 0.002, t);
+    let angle = n * TWO_PI * 4;
 
-  let num = 40;
-  for (let i = 0; i < num; i++) {
-    let angle = (TWO_PI / num) * i + t * 0.3;
-    let radius = 150 + 80 * sin(t + i * 0.3) * intensity;
+    b.x += cos(angle) * b.o;
+    b.y += sin(angle) * b.o;
 
-    let x = radius * cos(angle);
-    let y = radius * sin(angle);
+    let d = dist(mouseX, mouseY, b.x, b.y);
+    if (d < 150) {
+      b.x += (b.x - mouseX) * 0.02;
+      b.y += (b.y - mouseY) * 0.02;
+    }
 
-    let hue = (t * 40 + i * 10) % 360;
-    fill(hue, 80, 100, 70);
+    if (b.x < 0) b.x = width;
+    if (b.x > width) b.x = 0;
+    if (b.y < 0) b.y = height;
+    if (b.y > height) b.y = 0;
 
-    let r = 40 + 20 * sin(t * 2 + i) * intensity;
-    ellipse(x, y, r, r);
+    b.h = (b.h + 0.3) % 360;
+
+    fill(b.h, 80, 100, 40);
+    ellipse(b.x, b.y, b.s, b.s);
   }
 
-  t += 0.01;
-}
-
-function mouseMoved() {
-  intensity = map(mouseX, 0, width, 0.2, 3);
-}
-
-function keyPressed() {
-  if (key === 'c') {
-    background(0);
-  }
+  t += 0.005;
 }
 
 function windowResized() {
