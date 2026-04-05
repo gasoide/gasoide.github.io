@@ -4,14 +4,45 @@
   <meta charset="UTF-8">
   <title>Visual Psichedelico</title>
   <style>
-    html, body { margin: 0; padding: 0; overflow: hidden; background: #000; }
-    canvas { display: block; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+      font-family: sans-serif;
+    }
+
+    #pane-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 100vh;
+      background: rgba(20, 20, 20, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      z-index: 9999;
+      overflow-y: auto;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 260px;
+      width: calc(100vw - 260px);
+      height: 100vh;
+      display: block;
+    }
   </style>
 </head>
 <body>
+
+  <div id="pane-container"></div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tweakpane@4.0.3/dist/tweakpane.min.js"></script>
-<script src="sketch.js?v=1000"></script>
-  <div id="pane-container" style="position: fixed; top: 10px; left: 10px; z-index: 9999;"></div>
+  <script src="https://cdn.jsdelivr.net/npm/tweakpane@4.0.3/dist/tweakpane.min.js"></script>
+  <script src="sketch.js?v=2000"></script>
+
 </body>
 </html>
