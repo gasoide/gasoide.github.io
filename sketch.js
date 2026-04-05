@@ -34,7 +34,9 @@ function initBlobs() {
 }
 
 function initGUI() {
-  const pane = new Tweakpane.Pane();
+  const pane = new Tweakpane.Pane({
+    container: document.getElementById('pane-container')
+  });
 
   pane.addInput(params, 'numBlobs', { min: 10, max: 500, step: 1 })
       .on('change', initBlobs);
@@ -48,6 +50,7 @@ function initGUI() {
   pane.addInput(params, 'hueSpeed', { min: 0, max: 2, step: 0.01 });
   pane.addInput(params, 'trail', { min: 1, max: 50, step: 1 });
 }
+
 
 function draw() {
   background(0, 0, 0, params.trail);
