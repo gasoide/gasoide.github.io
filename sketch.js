@@ -1,3 +1,5 @@
+let canvas;
+
 let params = {
   numBlobs: 200,
   speed: 1.0,
@@ -12,39 +14,19 @@ let params = {
 
 let blobs = [];
 let t = 0;
-let canvas; // <-- AGGIUNTO
-
-let canvas;
 
 function setup() {
-  try {
-    canvas = createCanvas(windowWidth - 260, windowHeight);
-    console.log("Canvas creato:", canvas);
+  canvas = createCanvas(windowWidth - 260, windowHeight);
 
-    // PROTEZIONE TOTALE
-    if (canvas && canvas.position) {
-      canvas.position(260, 0);
-    }
+  canvas.position(260, 0);
+  canvas.elt.style.zIndex = -1;
 
-    if (canvas && canvas.elt && canvas.elt.style) {
-      canvas.elt.style.zIndex = -1;
-    }
+  colorMode(HSB, 360, 100, 100, 100);
+  noStroke();
 
-    colorMode(HSB, 360, 100, 100, 100);
-    noStroke();
-
-    console.log("Inizializzo blobs");
-    initBlobs();
-
-    console.log("Inizializzo GUI");
-    initGUI();
-
-  } catch (err) {
-    console.error("ERRORE IN SETUP:", err);
-  }
+  initBlobs();
+  initGUI();
 }
-
-
 
 function initBlobs() {
   blobs = [];
@@ -53,7 +35,6 @@ function initBlobs() {
       x: random(width),
       y: random(height),
       s: random(params.sizeMin, params.sizeMax),
-      o: random(0.5, 1.5),
       h: random(360),
     });
   }
